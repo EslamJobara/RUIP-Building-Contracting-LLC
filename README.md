@@ -55,20 +55,6 @@ Follow these steps to set up the project locally on your machine.
     ```
     The application will be available at `http://localhost:5173`.
 
----
-
-## 📸 Screenshots / Demo
-
-*(Replace these with actual screenshots of your application)*
-
-> **[Live Demo](https://your-production-link.com)** 👈
-
-| Home Page | Services |
-| :---: | :---: |
-| ![Home Page](https://via.placeholder.com/400x250?text=Home+Page+Screenshot) | ![Services](https://via.placeholder.com/400x250?text=Services+Screenshot) |
-
----
-
 ## 📁 Project Structure
 
 Here's an overview of the core project structure:
