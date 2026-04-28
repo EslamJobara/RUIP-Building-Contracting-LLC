@@ -34,6 +34,7 @@ This project is built with a modern frontend stack to ensure high performance, m
 
 ## Installation
 
+
 Step-by-step instructions on how to set up the project locally:
 
 1. **Clone the repository**:
