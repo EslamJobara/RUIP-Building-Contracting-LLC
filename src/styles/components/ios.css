@@ -1,0 +1,6 @@
+/* iOS-specific styles */
+@supports (-webkit-overflow-scrolling: touch) {
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}

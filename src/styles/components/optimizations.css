@@ -1,0 +1,33 @@
+/* Performance optimizations */
+.scroll-content {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Reduce layout thrashing */
+.size-contained {
+  contain: size layout;
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+  .mobile-optimize {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+  
+  .reduce-animations {
+    animation-duration: 0.2s;
+    transition-duration: 0.2s;
+  }
+}
+
+/* Throttle animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .performance-critical {
+    animation: none !important;
+    transition: none !important;
+  }
+}

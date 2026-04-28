@@ -1,0 +1,33 @@
+.hero-slide {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Hero dots styling */
+.hero-dots button {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+/* Touch feedback */
+.hero-touch-feedback {
+  touch-action: pan-y; /* Allow vertical scrolling */
+}
+
+@media (hover: none) {
+  .hero-touch-feedback {
+    cursor: grab;
+  }
+  
+  .hero-touch-feedback:active {
+    cursor: grabbing;
+  }
+}

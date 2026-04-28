@@ -1,0 +1,19 @@
+/* Enhanced button feedback */
+.button-feedback {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.button-feedback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.button-feedback:active::after {
+  opacity: 0.1;
+}

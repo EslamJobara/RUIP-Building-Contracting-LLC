@@ -1,0 +1,44 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.stagger-children.reveal > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.reveal > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.reveal > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.reveal > *:nth-child(4) { transition-delay: 0.4s; }
+
+.stagger-children.reveal > * {
+  opacity: 1;
+  transform: translateY(0);
+}

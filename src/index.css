@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  /* Improve focus visibility for accessibility */
+  :focus-visible {
+    outline: 2px solid #104484;
+    outline-offset: 2px;
+  }
+
+  /* Improve tap target sizes on mobile */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #104484;
+  transform-origin: 0%;
+  z-index: 1000;
+}
+
+/* Hero Slider */
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Partner Logos */
+.partner-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.partner-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.partner-scroll-container:active {
+  cursor: grabbing;
+}
+
+.partner-scroll-content {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-x;
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) {
+  .partner-scroll-container {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .partner-scroll-content > * {
+    scroll-snap-align: center;
+  }
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.stagger-children.reveal > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.reveal > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.reveal > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.reveal > *:nth-child(4) { transition-delay: 0.4s; }
+
+.stagger-children.reveal > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section spacing */
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.section-spacing-sm {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+/* Floating Buttons */
+.floating-button {
+  transition: all 0.3s ease-in-out;
+  will-change: transform, opacity;
+}
+
+.floating-button.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.floating-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.back-to-top.hidden {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+  will-change: transform;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Form Styles */
+.form-input:focus {
+  box-shadow: 0 0 0 2px rgba(16, 68, 132, 0.2);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+}
+
+.form-input.success {
+  border-color: #22c55e;
+}
+
+/* Image Loading */
+.image-loading {
+  filter: blur(10px);
+  transition: filter 0.3s ease-out;
+}
+
+.image-loaded {
+  filter: blur(0);
+}
+
+/* Touch-specific styles */
+@media (hover: none) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+  }
+
+  .touch-feedback {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .touch-feedback:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* Pull to refresh indicator */
+.pull-to-refresh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease-out;
+}
+
+.pull-to-refresh.active {
+  transform: translateY(0);
+}
+
+/* Enhanced mobile menu transitions */
+.mobile-menu-enter {
+  transform: translateX(100%);
+}
+
+.mobile-menu-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.mobile-menu-exit {
+  transform: translateX(0);
+}
+
+.mobile-menu-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-out;
+}
+
+/* Mobile-specific animations */
+@media (max-width: 768px) {
+  .mobile-fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: mobileFadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes mobileFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-scale {
+    transform-origin: center;
+    transition: transform 0.2s ease-out;
+  }
+
+  .mobile-scale:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Smooth scrolling for iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Better touch feedback */
+@media (hover: none) {
+  .touch-highlight {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .touch-highlight::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    border-radius: inherit;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .touch-highlight:active::after {
+    opacity: 0.1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Optimized animations for mobile */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-optimize {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+/* Enhanced button feedback */
+.button-feedback {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.button-feedback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.button-feedback:active::after {
+  opacity: 0.1;
+}
